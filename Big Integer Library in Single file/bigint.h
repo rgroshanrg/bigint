@@ -1,3 +1,33 @@
+/*
+    bigint_function_definitions.h
+
+    bigint Library for C++
+
+    MIT License
+
+    Created by Roshan Gupta on 16-10-2020
+    Copyright (c) 2020 Roshan Gupta
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+*/
+
+
 #pragma once
 
 #include <string>
@@ -26,7 +56,8 @@ using namespace std;
 #define big_lcm bigint::_big_lcm
 #define big_fact bigint::_big_fact
 #define big_isPrime bigint::_big_isPrime
-#define big_Palindrome bigint::_big_isPalindrome
+#define big_isPalindrome bigint::_big_isPalindrome
+#define to_bigint bigint::_to_bigint
 
 // Big Integer Class
 
@@ -581,7 +612,7 @@ class bigint {
             ans.str = antilog10(a.str);
             return ans;
         }
-        static bigint _big_swap(bigint &a, bigint &b) {     // swaps the two Big Integers.
+        static void _big_swap(bigint &a, bigint &b) {     // swaps the two Big Integers.
             swap(a.str, b.str);
         }
         static bigint _big_reverse(bigint &a) {             //Reverses the Big Integer.
@@ -609,6 +640,29 @@ class bigint {
         }
         static bool _big_isPrime(bigint &a) {                   // Check if the Big Integer is Prime Integer.
             return isPrime(a.str);
+        }
+
+        // to biginteger functions
+
+        static bigint _to_bigint(string s) {
+            bigint ans;
+            ans.str = s;
+            return ans;
+        }
+        static bigint _to_bigint(int n) {
+            bigint ans;
+            ans.str = to_string(n);
+            return ans;
+        }
+        static bigint _to_bigint(long int n) {
+            bigint ans;
+            ans.str = to_string(n);
+            return ans;
+        }
+        static bigint _to_bigint(long long int n) {
+            bigint ans;
+            ans.str = to_string(n);
+            return ans;
         }
 
 };
@@ -1247,9 +1301,15 @@ string bigint::reverse(string s) {          // reverses the string number, examp
 */
 
 string bigint::gcd(string str1, string str2) {
-    if(str2 == "0")
-        return str1;
-    return gcd(str2, mod(str1, str2));
+    if(is_strictlyMaximum(str2, str1))
+        swap(str1, str2);
+    string temp = "";
+    while(is_strictlyMaximum(str2, "0")) {
+        temp = mod(str1, str2);
+        str1 = str2;
+        str2 = temp;
+    }
+    return str1;
 }
 
 string bigint::lcm(string str1, string str2) {      // return lcm of both str1 and str2
