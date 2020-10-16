@@ -1,5 +1,5 @@
 /*
-    bigint_function_definitions.h
+    bigint.h
 
     bigint Library for C++
 
