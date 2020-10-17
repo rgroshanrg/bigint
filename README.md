@@ -1,8 +1,8 @@
 # bigint
 ## Big Integer Library for C++
-### 1 Million digits? 1 Billion? 1 Trillion? No Worries. This Library can handle any Integer of any Length.
-<img style="float: right;" src="https://github.com/rgroshanrg/bigint/blob/main/bigint_image.jpg" alt="drawing" width="500"/>
-pmnb
+## 1 Million digits? 1 Billion? 1 Trillion? No Worries. This Library can handle any Integer of any Length.
+<img style="float: left;" src="https://github.com/rgroshanrg/bigint/blob/main/bigint_image.jpg" alt="drawing" width="500"/>
+
 ### bigint is a C++ library which can handle Very very __Big Integers__. It can calculate *factorial* of __1000000...__ it can go any big. It may be useful in *Competitive Coding* and *Scientific Calculations* which deals with very very large Integers. It can also be used in *Decryption* process. It has many *inbuilt functions* which can be very useful.
 
 ---
@@ -147,6 +147,15 @@ if(a != b) {
 
 # In-built Functions
 
+## to_bigint(string) or to_bigint(int) or to_bigint(long)    -       to bigint function
+
+It takes one argument as string or int or long or long long and converts and return bigint of that particular argument provided.
+
+```c++
+b = to_bigint("56");
+```
+---
+
 ## big_abs(bigint)  -   absolute function
 
 It takes bigint as argument and return type is also *bigint*.
@@ -231,14 +240,6 @@ cout << big_logwithbase(a, b) << std::endl;         // returns log of 'a' to the
 // Output : 1
 ```
 
----
-## to_bigint(string) or to_bigint(int) or to_bigint(long)    -       to bigint function
-
-It takes one argument as string or int or long or long long and converts and return bigint of that particular argument provided.
-
-```c++
-b = to_bigint("56");
-```
 
 ---
 ## big_swap(bigint, bigint)     -       swap function
