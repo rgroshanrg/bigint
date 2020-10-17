@@ -1,7 +1,7 @@
 # bigint
 ## Big Integer Library for C++
 ### 1 Million digits? 1 Billion? 1 Trillion? No Worries. This Library can handle any Integer of any Length.
-<img src="https://github.com/rgroshanrg/bigint/blob/main/bigint_image.jpg" alt="drawing" width="500"/>
+<img style="float: right;" src="https://github.com/rgroshanrg/bigint/blob/main/bigint_image.jpg" alt="drawing" width="500"/>
 
 ### bigint is a C++ library which can handle Very very __Big Integers__. It can calculate *factorial* of __1000000...__ it can go any big. It may be useful in *Competitive Coding* and *Scientific Calculations* which deals with very very large Integers. It can also be used in *Decryption* process. It has many *inbuilt functions* which can be very useful.
 
@@ -30,7 +30,7 @@ bigint d(956486133);                                    // big integer intializa
 # Addition
 
 Addition can be done as it is done with general integer types of variables.
-(*Note : variable's value and declaration will be followed as it goes.*)
+- (*Note : variable's value and declaration will be followed as it goes.*)
 
 ```c++
 bigint c = a + b;                         // Addition, with both operand as bigint
@@ -171,6 +171,158 @@ cout << big_max(a, b) << std::endl;          // returns maximum of both bigints
 ```
 
 ---
+## big_min(bigint, bigint)  -   minimum function
+
+It takes two bigint as arguments and return type is also *bigint*, returns the minimum of both bigints.
+
+```c++
+cout << big_min(a, b) << std::endl;          // returns minimum of both bigints
+// Output : 60820564691661355463515465564664568
+```
+---
+## big_pow(bigint, bigint)  -   power function
+
+It takes two bigint as arguments and return type is also *bigint*, returns the *first* bigint argument to the power *second* bigint argument.
+
+```c++
+b = to_bigint("2");
+cout << big_pow(a, b) << std::endl;            // return a to the power b bigint
+// Output : 3209704106974854937901411896655926267350648828646359016173511958974807798969
+b = to_bigint("60820564691661355463515465564664568");
+```
+
+---
+## big_sqrt(bigint)     -   square root function
+
+It takes one bigint as arguments and return type is also *bigint*(floor value), returns the square root of the bigint.
+
+```c++
+cout << big_sqrt(a) << std::endl;               // returns sqrt of bigint
+// Output : 7526901790514881921
+```
+
+---
+## big_log2(bigint)     -   log2 function
+
+It takes one bigint as arguments and return type is also *bigint*(floor value), returns the log to base 2 of the bigint.
+
+```c++
+cout << big_log2(a) << std::endl;               // returns log to the base 2 bigint
+// Output : 125
+```
+
+---
+## big_log10(bigint)    -      log10 function
+
+It takes one bigint as arguments and return type is also *bigint*(floor value), returns the log to base 10 of the bigint.
+
+```c++
+cout << big_log10(a) << std::endl;              // returns log to the base 10 bigint
+// Output : 37
+```
+
+---
+## big_logwithbase(bigint, bigint)      -       logwithbase function
+
+It takes two bigints as arguments and return type is also *bigint*(floor value), returns the *first* arg. log to base  of *second* arg. of the bigint.
+
+```c++
+cout << big_logwithbase(a, b) << std::endl;         // returns log of 'a' to the base 'b' bigint
+// Output : 1
+```
+
+---
+## to_bigint(string) or to_bigint(int) or to_bigint(long)    -       to bigint function
+
+It takes one argument as string or int or long or long long and converts and return bigint of that particular argument provided.
+
+```c++
+b = to_bigint("56");
+```
+
+---
+## big_swap(bigint, bigint)     -       swap function
+
+It takes two arguments as *bigint* and swaps them.
+
+```c++
+big_swap(a, b);
+cout << a << "\t" << b << std::endl;    // Output : 56      56654250564056135415631554531554513813
+```
+
+---
+## big_gcd(bigint, bigint)      -       Greatest Common Divisor function (GCD or HCF)
+
+It takes two bigint as arguments and return type is also *bigint*, returns the gcd of both as bigint.
+
+```c++
+cout << big_gcd(a, b) << std::endl;      // Output : 1
+```
+
+---
+## big_lcm(bigint, bigint)      -       Lowest Common Multiple function (LCM)
+
+It takes two bigint as arguments and return type is also *bigint*, returns the lcm of both as bigint.
+
+```c++
+cout << big_lcm(a, b) << std::endl;     // Output : 3172638031587143583275367053767052773528
+```
+
+---
+## big_fact(bigint)     -       factorial function
+
+It takes one bigint as argument and return type is also *bigint*, returns the factorial of arg. bigint.
+
+```c++
+a = to_bigint("15");
+cout << big_fact(a) << std::endl;       // Output : 1307674368000
+```
+
+---
+## big_isPrime(bigint)      -       Prime number checker function
+
+It takes one bigint as argument and return type is *boolean*, returns *true* if the bigint is prime or *false* in other cases.
+
+```c++
+a = to_bigint("67");
+b = to_bigint("33");
+cout << big_isPrime(a) << std::endl;      // Output : 1   (true)
+cout << big_isPrime(b) << std::endl;      // Output : 0   (false)
+```
+
+---
+## big_reverse(bigint)      -       Reverse function
+
+It takes one bigint as argumnet and return type is also *bigint*, returns bigint after reversing the digits on the bigint.
+
+```c++
+a = to_bigint("65894");
+cout << big_reverse(a) << std::endl;            // Output : 49856
+```
+
+---
+## big_isPalindrome(bigint)     -       Palindrome checker
+
+It takes one bigint as argument and return type is *boolean*, returns *true* if the bigint is palindromic bigint or *false* in other cases.
+
+```c++
+cout << big_isPalindrome(a) << std::endl;        // Output : 0  (false)
+a = to_bigint("654456");
+cout << big_isPalindrome(a) << std::endl;        // Output : 1   (true)
+```
+
+---
+# Increment and Decrement
+
+Increment and Decrement can be done as it is done with general integer types of variables.
+
+```c++
+cout << a << "\t" << ++a << std::endl;              // Output : 654456  654457
+cout << a << "\t" << --a << std::endl;              // Output : 654457  654456
+```
+
+
+
 
 
 
