@@ -303,7 +303,7 @@ string bigint::multiply(string str1, string str2) {             // return arithm
 */
 
 string bigint::divide(string str1, string str2) {                   // return arithmetic division of str1/str2
-    string ans = "";
+        string ans = "";
     if(str2 == "0") {
         return "0";
     } else if(str1 == str2) {
@@ -325,36 +325,33 @@ string bigint::divide(string str1, string str2) {                   // return ar
     } else { 
         if(str2 == "1")
             return str1;
-        if(is_strictlyMaximum(str1, str2))
+        if(is_strictlyMaximum(str2, str1)) {
             return "0";
-        stringstream strstrm(str2);
-        unsigned long long int int_str2 = 0;
-        strstrm >> int_str2;
-        if(int_str2 <= std::numeric_limits<unsigned long long>::max()) {
+        }
+        if(str2.length() <= 19) {
+            stringstream strstrm(str2);
+            unsigned long long int int_str2 = 0;
+            strstrm >> int_str2;
             ans = shortDivide(str1, int_str2);
         }
-        else {            
+        else {
             string temp = str2;
             ans = "0";
-            string count = "1";
-            long long int len_diff = (long long int) str1.length() - str2.length();
-            len_diff--;
-            int lim = 1;
-            if(str1[0] == '1' && str1[1] == '0')
-                lim = 2;            
-            while(len_diff > lim) {
-                count = add(count, pow("10",to_string(len_diff)));
-                temp = add(multiply(str2, pow("10",to_string(len_diff))), temp);
-                len_diff--;
+            string count = "0";
+            while(str1 == maximum(str1, str2)) {
+                int lenDiff = str1.length() - str2.length();
+                if(lenDiff > 0 && str1[0] > str2[0]) {
+                    count = add(count, pow("10", to_string(lenDiff)));
+                    str1 = subtract(str1, multiply(str2, pow("10", to_string(lenDiff))));
+                } else if(lenDiff > 0) {
+                    count = add(count, pow("10", to_string(lenDiff-1)));
+                    str1 = subtract(str1, multiply(str2, pow("10", to_string(lenDiff-1))));
+                } else {
+                    count = add(count, "1");
+                    str1 = subtract(str1, str2);
+                }
             }
-            while(str1 == maximum(temp, str1) && temp != str1) {
-                temp = add(temp, str2);
-                count = add(count, "1");
-            }
-            if(temp == str1)
-                ans = count;
-            else
-                ans = subtract(count, "1");
+            ans = count;
         }
     }
     return ans;
