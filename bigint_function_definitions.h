@@ -135,7 +135,7 @@ string bigint::add(string str1, string str2) {          // returns arithmetic ad
                       Algorithm Explanation
 
         Simple traversal from right to left in the longest string and subtracting each character 
-        from second string fro  first string integer and keeping track of carry and storing the result 
+        from second string from  first string integer and keeping track of carry and storing the result 
         into new String(ans). If the both numbers are negative in the Strings provided the respective 
         Addition function is called.
         
@@ -380,8 +380,6 @@ string bigint::shortDivide(string s1, unsigned long long int divisor) {     // r
 
 string bigint::mod(string str1, string str2) {                  // return arithmetic modulos of str1%str2
     string ans = subtract(str1, multiply(divide(str1, str2), str2));
-    if(ans[0] == '-')
-        ans.erase(0, 1);
     return ans;
 }
 
