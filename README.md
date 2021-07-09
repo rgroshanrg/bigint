@@ -170,7 +170,7 @@ cout << b << std::endl;             // Output : 60820564691661355463515465564664
 
 ---
 
-## big_max(bigint, bigint)  -   maximum funtion
+## big_max(bigint, bigint)  -   maximum function
 
 It takes two bigint as arguments and return type is also *bigint*, returns the maximum of both bigints.
 
@@ -321,7 +321,6 @@ Increment and Decrement can be done as it is done with general integer types of 
 cout << a << "\t" << ++a << std::endl;              // Output : 654456  654457
 cout << a << "\t" << --a << std::endl;              // Output : 654457  654456
 ```
-
 
 
 
