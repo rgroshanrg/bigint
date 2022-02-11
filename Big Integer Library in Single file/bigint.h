@@ -36,8 +36,6 @@
 #include <math.h>
 #include <limits>
 
-using namespace std;
-
 // Macros for Programmer(User) use cases.
 
 #define big_abs bigint::_big_abs

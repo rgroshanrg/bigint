@@ -35,8 +35,6 @@
 #include <math.h>
 #include <limits>
 
-using namespace std;
-
 class bigint {
     private: 
         string str; // only data memeber for strong Big Integer as String. [For signed int, str[0] = '-']
