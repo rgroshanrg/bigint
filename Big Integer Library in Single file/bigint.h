@@ -36,8 +36,6 @@
 #include <math.h>
 #include <limits>
 
-using namespace std;
-
 // Macros for Programmer(User) use cases.
 
 #define big_abs bigint::_big_abs
@@ -63,44 +61,44 @@ using namespace std;
 
 class bigint {
     private: 
-        string str; // only data memeber for strong Big Integer as String. [For signed int, str[0] = '-']
+        std::string str; // only data memeber for strong Big Integer as String. [For signed int, str[0] = '-']
         
 
         // Function Definitions for Internal Uses
 
-        static string trim(string);
-        static string add(string, string);
-        static string subtract(string, string);
-        static string multiply(string, string);
-        static string divide(string, string);
+        static std::string trim(std::string);
+        static std::string add(std::string, std::string);
+        static std::string subtract(std::string, std::string);
+        static std::string multiply(std::string, std::string);
+        static std::string divide(std::string, std::string);
 
-        static string mod(string, string);
-        static string shortDivide(string, unsigned long long int);
-        static string maximum(string, string);
-        static bool is_maximum(string, string);
-        static bool is_strictlyMaximum(string, string);
-        static string minimum(string, string);
-        static bool is_minimum(string, string);
-        static bool is_strictlyMinimum(string, string);
-        static bool is_bigint(string);
+        static std::string mod(std::string, std::string);
+        static std::string shortDivide(std::string, unsigned long long int);
+        static std::string maximum(std::string, std::string);
+        static bool is_maximum(std::string, std::string);
+        static bool is_strictlyMaximum(std::string, std::string);
+        static std::string minimum(std::string, std::string);
+        static bool is_minimum(std::string, std::string);
+        static bool is_strictlyMinimum(std::string, std::string);
+        static bool is_bigint(std::string);
 
         // Public Property
 
-        static string abs(string);
-        static string pow(string, string);
-        static string sqrt(string);
-        static string log2(string);
-        static string log10(string);
-        static string logwithbase(string, string);
-        static string antilog2(string);
-        static string antilog10(string);
-        static void swap(string&, string&);
-        static string reverse(string);
-        static string gcd(string, string);
-        static string lcm(string, string);
-        static string fact(string);
-        static bool isPalindrome(string);
-        static bool isPrime(string);        
+        static std::string abs(std::string);
+        static std::string pow(std::string, std::string);
+        static std::string sqrt(std::string);
+        static std::string log2(std::string);
+        static std::string log10(std::string);
+        static std::string logwithbase(std::string, std::string);
+        static std::string antilog2(std::string);
+        static std::string antilog10(std::string);
+        static void swap(std::string&, std::string&);
+        static std::string reverse(std::string);
+        static std::string gcd(std::string, std::string);
+        static std::string lcm(std::string, std::string);
+        static std::string fact(std::string);
+        static bool isPalindrome(std::string);
+        static bool isPrime(std::string);   
 
 
     public: 
@@ -108,32 +106,32 @@ class bigint {
         bigint() {
             str = '0';  //default value
         }
-        bigint(string s) {
+        bigint(std::string s) {
             if(!is_bigint(s))
-                throw runtime_error("Invalid Big Integer has been fed.");   // if the input string is not valid number.
+                throw std::runtime_error("Invalid Big Integer has been fed.");   // if the input string is not valid number.
             str = s;
         }
         bigint(long long int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(long int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(const bigint &n) {
             str = n.str;
         }
 
         // operator overloading for output stream {<<}
-        friend ostream &operator << (ostream& stream, const bigint &n) {
+        friend std::ostream &operator << (std::ostream& stream, const bigint &n) {
             stream << n.str;
             return stream;
         }
 
         // operator overloading for input stream {>>}
-        friend istream &operator >> (istream& stream, bigint &n) {
+        friend std::istream &operator >> (std::istream& stream, bigint &n) {
             stream >> n.str;
             return stream;
         }
@@ -148,32 +146,32 @@ class bigint {
         }        
         friend bigint operator + (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
         friend bigint operator + (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
         friend bigint operator + (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
 
@@ -197,32 +195,32 @@ class bigint {
 
         friend bigint operator - (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator - (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator - (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
 
@@ -243,32 +241,32 @@ class bigint {
         }
         friend bigint operator * (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator * (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator * (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         // Extra shortcut feature
@@ -288,32 +286,32 @@ class bigint {
         }
         friend bigint operator / (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator / (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator / (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
 
@@ -334,32 +332,32 @@ class bigint {
         }
         friend bigint operator % (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator % (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator % (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         
@@ -412,22 +410,22 @@ class bigint {
             return is_strictlyMaximum(str, n.str);
         }
         friend bool operator > (bigint const &n1, int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
         friend bool operator > (bigint const &n1, long int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (long int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
         friend bool operator > (bigint const &n1, long long int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (long long int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
 
         /* Operator {<} Overloadings, for different kind of 
@@ -437,22 +435,22 @@ class bigint {
             return is_strictlyMinimum(str, n.str);
         }
         friend bool operator < (bigint const &n1, int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
         friend bool operator < (bigint const &n1, long int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (long int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
         friend bool operator < (bigint const &n1, long long int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (long long int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
 
         /* Operator {>=} Overloadings, for different kind of 
@@ -462,22 +460,22 @@ class bigint {
             return is_maximum(str, n.str);
         }
         friend bool operator >= (bigint const &n1, int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
         friend bool operator >= (bigint const &n1, long int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (long int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
         friend bool operator >= (bigint const &n1, long long int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (long long int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
 
         /* Operator {<=} Overloadings, for different kind of 
@@ -487,22 +485,22 @@ class bigint {
             return is_minimum(str, n.str);
         }
         friend bool operator <= (bigint const &n1, int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
         friend bool operator <= (bigint const &n1, long int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (long int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
         friend bool operator <= (bigint const &n1, long long int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (long long int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
 
 
@@ -513,22 +511,22 @@ class bigint {
             return (*this).str == n.str;
         }
         friend bool operator == (bigint const &n1, int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
         friend bool operator == (bigint const &n1, long int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (long int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
         friend bool operator == (bigint const &n1, long long int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (long long int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
 
 
@@ -539,22 +537,22 @@ class bigint {
             return (*this).str != n.str;
         }
         friend bool operator != (bigint const &n1, int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
         friend bool operator != (bigint const &n1, long int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (long int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
         friend bool operator != (bigint const &n1, long long int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (long long int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
 
         //-----------------------------------------------------------
@@ -644,31 +642,31 @@ class bigint {
 
         // to biginteger functions
 
-        static bigint _to_bigint(string s) {
+        static bigint _to_bigint(std::string s) {
             bigint ans;
             ans.str = s;
             return ans;
         }
         static bigint _to_bigint(int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
         static bigint _to_bigint(long int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
         static bigint _to_bigint(long long int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
 
 };
 
 
-bool bigint::is_bigint(string s) {                              // Checks if the feeded integer is valid Number or not.
+bool bigint::is_bigint(std::string s) {                              // Checks if the feeded integer is valid Number or not.
     if(s[0] == '-')
         s.erase(0, 1);
     for(unsigned long long int i = 0; i < s.length(); ++i) {
@@ -699,10 +697,10 @@ bool bigint::is_bigint(string s) {                              // Checks if the
         where n ans m are the lengths of respective strings(Integers) provided.
 */
 
-string bigint::add(string str1, string str2) {          // returns arithmetic addition of str1+str2
+std::string bigint::add(std::string str1, std::string str2) {          // returns arithmetic addition of str1+str2
     int str1_len = str1.length();
     int str2_len = str2.length();
-    string sum = "";
+    std::string sum = "";
 
     if(str1_len == 0 && str2_len == 0) {
         sum = "0";
@@ -721,23 +719,23 @@ string bigint::add(string str1, string str2) {          // returns arithmetic ad
         for(i = str1_len-1, j = str2_len-1; i >= 0 && j >= 0; --i, --j) {
             track_sum =  ((int)str1[i])-48 + ((int)str2[j])-48 + carry;
             carry = track_sum/10;
-            sum = to_string(track_sum%10) + sum;
+            sum = std::to_string(track_sum%10) + sum;
         }
         if(i >= 0 && j < 0) {
             for(; i >= 0; --i) {
                 track_sum = ((int)str1[i])-48 + carry;
                 carry = track_sum/10;
-                sum = to_string(track_sum%10) + sum;
+                sum = std::to_string(track_sum%10) + sum;
             }
         } else if(j >= 0 && i < 0) {
             for(; j >= 0; --j) {
                 track_sum = ((int)str2[j])-48 + carry;
                 carry = track_sum/10;
-                sum = to_string(track_sum%10) + sum;
+                sum = std::to_string(track_sum%10) + sum;
             }
         }
         if(carry) {
-            sum = to_string(carry) + sum;
+            sum = std::to_string(carry) + sum;
         }
     }
     return trim(sum);
@@ -759,10 +757,10 @@ string bigint::add(string str1, string str2) {          // returns arithmetic ad
         where n ans m are the lengths of respective strings(Integers) provided.
 */
 
-string bigint::subtract(string str1, string str2) {                 // returns arithmetic subtraction of str1-str2
+std::string bigint::subtract(std::string str1, std::string str2) {                 // returns arithmetic subtraction of str1-str2
     int str1_len = str1.length();
     int str2_len = str2.length();
-    string sum = "";
+    std::string sum = "";
     if(str1 == str2) {
         return "0";
     } else if(str1[0] == '-' && str2[0] == '-') {
@@ -771,7 +769,7 @@ string bigint::subtract(string str1, string str2) {                 // returns a
         } else {
             bigint t1(str1.erase(0, 1));
             bigint t2(str2.erase(0, 1));
-            string temp = subtract(t2.str, t1.str);
+            std::string temp = subtract(t2.str, t1.str);
             bigint mx = maximum(t2.str, t1.str);
             if(temp[0] != '-' && mx.str == t1.str)
                 sum = "-" + temp;
@@ -787,7 +785,7 @@ string bigint::subtract(string str1, string str2) {                 // returns a
 
         int i, j, track_sum, carry = 0;      
         if(str1_len < str2_len) {
-            string tp = str1;
+            std::string tp = str1;
             str1 = str2;
             str2 = tp;
             sum = "-" + subtract(str1, str2);
@@ -797,7 +795,7 @@ string bigint::subtract(string str1, string str2) {                 // returns a
             bigint b(str2);
             bigint mx = maximum(a.str, b.str);
             if(mx.str == str2) {
-                string tp = str1;
+                std::string tp = str1;
                 str1 = str2;
                 str2 = tp;
                 bigint t1(str1);
@@ -826,7 +824,7 @@ string bigint::subtract(string str1, string str2) {                 // returns a
             } else {
                 carry = 0;
             }
-            sum = to_string(track_sum) + sum;
+            sum = std::to_string(track_sum) + sum;
         }
     }
     return trim(sum);
@@ -847,11 +845,11 @@ string bigint::subtract(string str1, string str2) {                 // returns a
         where n ans m are the lengths of respective strings(Integers) provided.
 */
 
-string bigint::multiply(string str1, string str2) {             // return arithmetic multiplication of str1*str2
+std::string bigint::multiply(std::string str1, std::string str2) {             // return arithmetic multiplication of str1*str2
     bool toAddNeg = false;
     int str1_len = str1.length();
     int str2_len = str2.length();
-    string ans = "";
+    std::string ans = "";
     if(str1[0] == '-' && str2[0] == '-') {
         ans = multiply(str1.erase(0, 1), str2.erase(0, 1));
     } else if(str1[0] == '-') {
@@ -863,7 +861,7 @@ string bigint::multiply(string str1, string str2) {             // return arithm
     } else {
             if (str1_len == 0 || str2_len == 0)
                 return "0";
-            vector<int> result(str1_len + str2_len, 0);
+            std::vector<int> result(str1_len + str2_len, 0);
             int i_n1 = 0;
             int i_n2 = 0;
             for (int i=str1_len-1; i>=0; i--) {
@@ -917,8 +915,8 @@ string bigint::multiply(string str1, string str2) {             // return arithm
         where n ans m are the lengths of respective strings(Integers) provided.
 */
 
-string bigint::divide(string str1, string str2) {                   // return arithmetic division of str1/str2
-    string ans = "";
+std::string bigint::divide(std::string str1, std::string str2) {                   // return arithmetic division of str1/str2
+    std::string ans = "";
     if(str2 == "0") {
         return "0";
     } else if(str1 == str2) {
@@ -926,13 +924,13 @@ string bigint::divide(string str1, string str2) {                   // return ar
     } else if(str1[0] == '-' && str2[0] == '-') {
         ans = divide(str1.erase(0, 1), str2.erase(0, 1));
     } else if(str1[0] == '-') {
-        string temp = divide(str1.erase(0, 1), str2);
+        std::string temp = divide(str1.erase(0, 1), str2);
         if(temp == "0")
             ans = temp;
         else
             ans = '-' + temp;        
     } else if(str2[0] == '-') {
-        string temp = divide(str1, str2.erase(0, 1));
+        std::string temp = divide(str1, str2.erase(0, 1));
         if(temp == "0")
             ans = temp;
         else
@@ -944,23 +942,23 @@ string bigint::divide(string str1, string str2) {                   // return ar
             return "0";
         }
         if(str2.length() <= 19) {
-            stringstream strstrm(str2);
+            std::stringstream strstrm(str2);
             unsigned long long int int_str2 = 0;
             strstrm >> int_str2;
             ans = shortDivide(str1, int_str2);
         }
         else {
-            string temp = str2;
+            std::string temp = str2;
             ans = "0";
-            string count = "0";
+            std::string count = "0";
             while(str1 == maximum(str1, str2)) {
                 int lenDiff = str1.length() - str2.length();
                 if(lenDiff > 0 && str1[0] > str2[0]) {
-                    count = add(count, pow("10", to_string(lenDiff)));
-                    str1 = subtract(str1, multiply(str2, pow("10", to_string(lenDiff))));
+                    count = add(count, pow("10", std::to_string(lenDiff)));
+                    str1 = subtract(str1, multiply(str2, pow("10", std::to_string(lenDiff))));
                 } else if(lenDiff > 0) {
-                    count = add(count, pow("10", to_string(lenDiff-1)));
-                    str1 = subtract(str1, multiply(str2, pow("10", to_string(lenDiff-1))));
+                    count = add(count, pow("10", std::to_string(lenDiff-1)));
+                    str1 = subtract(str1, multiply(str2, pow("10", std::to_string(lenDiff-1))));
                 } else {
                     count = add(count, "1");
                     str1 = subtract(str1, str2);
@@ -972,8 +970,8 @@ string bigint::divide(string str1, string str2) {                   // return ar
     return ans;
 }
 
-string bigint::shortDivide(string s1, unsigned long long int divisor) {     // return arithmetic division of str1/str2
-    string ans;
+std::string bigint::shortDivide(std::string s1, unsigned long long int divisor) {     // return arithmetic division of str1/str2
+    std::string ans;
     int idx = 0;
     long long int temp = s1[idx] - '0';
     
@@ -993,14 +991,14 @@ string bigint::shortDivide(string s1, unsigned long long int divisor) {     // r
     return ans;
 }
 
-string bigint::mod(string str1, string str2) {                  // return arithmetic modulos of str1%str2
-    string ans = subtract(str1, multiply(divide(str1, str2), str2));
+std::string bigint::mod(std::string str1, std::string str2) {                  // return arithmetic modulos of str1%str2
+    std::string ans = subtract(str1, multiply(divide(str1, str2), str2));
     return ans;
 }
 
 
-string bigint::maximum(string str1, string str2) {              // return maximum of both strings.
-    string max = "";
+std::string bigint::maximum(std::string str1, std::string str2) {              // return maximum of both strings.
+    std::string max = "";
     bool bothNeg = false;
     bool isMax1 = false;
     bool isMax2 = false;
@@ -1046,26 +1044,26 @@ string bigint::maximum(string str1, string str2) {              // return maximu
     }
 }
 
-string bigint::minimum(string str1, string str2) {              // return minimum of both strings.
-    string ans = maximum(str1, str2);
+std::string bigint::minimum(std::string str1, std::string str2) {              // return minimum of both strings.
+    std::string ans = maximum(str1, str2);
     if(ans == str1)
         return str2;
     return str1;
 }
 
-bool bigint::is_maximum(string str1, string str2) {             //checks if str1 >= str2, numerically
+bool bigint::is_maximum(std::string str1, std::string str2) {             //checks if str1 >= str2, numerically
     if(str1 == maximum(str1, str2))
         return true;
     return false;
 }
 
-bool bigint::is_minimum(string str1, string str2) {             //checks if str1 <= str2, numerically
+bool bigint::is_minimum(std::string str1, std::string str2) {             //checks if str1 <= str2, numerically
     if(str2 == maximum(str1, str2))
         return true;
     return false;
 }
 
-bool bigint::is_strictlyMaximum(string str1, string str2) {    //checks if str1 > str2, numerically
+bool bigint::is_strictlyMaximum(std::string str1, std::string str2) {    //checks if str1 > str2, numerically
     if(str1 == str2)
         return false;
     if(str1 == maximum(str1, str2))
@@ -1073,7 +1071,7 @@ bool bigint::is_strictlyMaximum(string str1, string str2) {    //checks if str1 
     return false;
 }
 
-bool bigint::is_strictlyMinimum(string str1, string str2) {    //checks if str1 < str2, numerically
+bool bigint::is_strictlyMinimum(std::string str1, std::string str2) {    //checks if str1 < str2, numerically
     if(str1 == str2)
         return false;
     if(str2 == maximum(str1, str2))
@@ -1081,7 +1079,7 @@ bool bigint::is_strictlyMinimum(string str1, string str2) {    //checks if str1 
     return false;
 }
 
-string bigint::trim(string s) {                         // function to remove zeros
+std::string bigint::trim(std::string s) {                         // function to remove zeros
     if(s == "0")
         return s;
     if(s[0] == '-') {
@@ -1105,7 +1103,7 @@ string bigint::trim(string s) {                         // function to remove ze
 
 
 
-string bigint::abs(string s) {                          // returns absolute value of string
+std::string bigint::abs(std::string s) {                          // returns absolute value of string
     if(s[0] == '-')
         s.erase(0, 1);
     return s;
@@ -1125,12 +1123,12 @@ string bigint::abs(string s) {                          // returns absolute valu
         where n ans m are the lengths of respective strings(Integers) provided.
 */
 
-string bigint::pow(string str1, string str2) {                  // returns str1^str2, ^ -> power, numerically
+std::string bigint::pow(std::string str1, std::string str2) {                  // returns str1^str2, ^ -> power, numerically
     if(str2 == "0") {
         return "1";
     } else if(str1 == "0") {
         if(str2[0] == '-')
-            return to_string((long long int)std::pow(0, -5));
+            return std::to_string((long long int)std::pow(0, -5));
         return "0";
     } else if(str1[0] == '-' && str2[0] == '-') {
         if(str1 == "-1" && str2 == "-1") {
@@ -1155,7 +1153,7 @@ string bigint::pow(string str1, string str2) {                  // returns str1^
             return "0";
         }
     } else {
-        string init_str1 = str1;
+        std::string init_str1 = str1;
         while(str2 != "1") {
             str1 = multiply(str1, init_str1);
             str2 = subtract(str2, "1");
@@ -1178,24 +1176,24 @@ string bigint::pow(string str1, string str2) {                  // returns str1^
         Algorithmic Space Complexity : O(s/2);
 */
 
-string bigint::sqrt(string s) {                 // returns sqrt(s), numerically
+std::string bigint::sqrt(std::string s) {                 // returns sqrt(s), numerically
     if(s[0] == '-')
         return s;
     if(s == "0")
         return "0";
     unsigned long long int s_len = s.length();
-    string ans;
-    string mid = "";
-    string high, low, square;
+    std::string ans;
+    std::string mid = "";
+    std::string high, low, square;
     unsigned long long int ans_len = s_len >> 1;
     if(s_len & 1) {
-        low = pow("10", to_string(ans_len));
-        high = pow("10", to_string(ans_len+1));
+        low = pow("10", std::to_string(ans_len));
+        high = pow("10", std::to_string(ans_len+1));
     } else {
-        low = pow("10", to_string(ans_len-1));
-        high = pow("10", to_string(ans_len));
+        low = pow("10", std::to_string(ans_len-1));
+        high = pow("10", std::to_string(ans_len));
     }
-    string prev;
+    std::string prev;
     while(1) {
         mid = divide(add(high, low), "2");
         square = multiply(mid, mid);
@@ -1215,16 +1213,16 @@ string bigint::sqrt(string s) {                 // returns sqrt(s), numerically
 
 
 
-string bigint::log2(string s) {                 // returns log(s) to base of 2
+std::string bigint::log2(std::string s) {                 // returns log(s) to base of 2
     if(s == "0") {
         // throw new exception(std::out_of_range("log(0) is undefined"));
-        return to_string(std::log2(0));
+        return std::to_string(std::log2(0));
     }
     if(s[0] == '-') {
         // throw new exception(std::out_of_range("log(negative) is not allowed"));
-        return to_string(std::log2(-1));
+        return std::to_string(std::log2(-1));
     }
-    string logVal = "-1";
+    std::string logVal = "-1";
     while(s != "0") {
         logVal = add(logVal, "1");
         s = divide(s, "2");
@@ -1232,38 +1230,38 @@ string bigint::log2(string s) {                 // returns log(s) to base of 2
     return logVal;
 }
 
-string bigint::log10(string s) {                // returns log(s) to base of 10
+std::string bigint::log10(std::string s) {                // returns log(s) to base of 10
     if(s == "0") {
         // throw new exception(std::out_of_range("log(0) is undefined"));
-        return to_string(std::log2(0));
+        return std::to_string(std::log2(0));
     }
     if(s[0] == '-') {
         // throw new exception(std::out_of_range("log(negative) is not allowed"));
-        return to_string(std::log2(-1));
+        return std::to_string(std::log2(-1));
     }
-    return to_string(s.length() - 1);
+    return std::to_string(s.length() - 1);
 }
 
-string bigint::logwithbase(string val, string base) {
+std::string bigint::logwithbase(std::string val, std::string base) {
     return divide(log2(val), log2(base));
 }
 
-string bigint::antilog2(string s) {
+std::string bigint::antilog2(std::string s) {
     return pow("2", s);
 }
 
-string bigint::antilog10(string s) {
+std::string bigint::antilog10(std::string s) {
     return pow("10", s);
 }
 
-void bigint::swap(string& str1, string& str2) {
-    string s;
+void bigint::swap(std::string& str1, std::string& str2) {
+    std::string s;
     s = str1;
     str1 = str2;
     str2 = s;
 }
 
-string bigint::reverse(string s) {          // reverses the string number, example: "7875" => "5787"
+std::string bigint::reverse(std::string s) {          // reverses the string number, example: "7875" => "5787"
     bool fl = false;
     if(s[0] == '-') {
         s.erase(0, 1);
@@ -1295,10 +1293,10 @@ string bigint::reverse(string s) {          // reverses the string number, examp
         Algorithmic Space Complexity : O(log(str2)) in stack;
 */
 
-string bigint::gcd(string str1, string str2) {
+std::string bigint::gcd(std::string str1, std::string str2) {
     if(is_strictlyMaximum(str2, str1))
         swap(str1, str2);
-    string temp = "";
+    std::string temp = "";
     while(is_strictlyMaximum(str2, "0")) {
         temp = mod(str1, str2);
         str1 = str2;
@@ -1307,17 +1305,17 @@ string bigint::gcd(string str1, string str2) {
     return str1;
 }
 
-string bigint::lcm(string str1, string str2) {      // return lcm of both str1 and str2
+std::string bigint::lcm(std::string str1, std::string str2) {      // return lcm of both str1 and str2
     return divide(multiply(str1, str2), gcd(str1, str2));
 }
 
-string bigint::fact(string s) {                     // returns the factorial of string s, numerically
+std::string bigint::fact(std::string s) {                     // returns the factorial of string s, numerically
     if(s[0] == '-') {
-        throw runtime_error("Factorial of Negative Integer is not defined.");
+        throw std::runtime_error("Factorial of Negative Integer is not defined.");
     }
     if(s == "0")
         return "1";
-    string ans = "1";
+    std::string ans = "1";
     while(s != "0") {
         ans = multiply(ans, s);
         s = subtract(s, "1");
@@ -1325,7 +1323,7 @@ string bigint::fact(string s) {                     // returns the factorial of 
     return ans;
 }
 
-bool bigint::isPalindrome(string s) {                  // checks if the Integer as string, s is Palindrome no. or not
+bool bigint::isPalindrome(std::string s) {                  // checks if the Integer as string, s is Palindrome no. or not
     if(s[0] == '-')
         s.erase(0, 1);
     unsigned long long int beg = 0, end = s.length() - 1;
@@ -1338,11 +1336,11 @@ bool bigint::isPalindrome(string s) {                  // checks if the Integer 
     return true;
 }
 
-bool bigint::isPrime(string s) {                // checks if the String as Number is prime or not
+bool bigint::isPrime(std::string s) {                // checks if the String as Number is prime or not
     if(maximum(s, "2") != s)
         return false;
-    string sqrt = bigint::sqrt(s);
-    string i = "";
+    std::string sqrt = bigint::sqrt(s);
+    std::string i = "";
     for(i = "2"; is_maximum(sqrt, i); i = add(i, "1")) {
         if(mod(s, i) == "0")
             return false;

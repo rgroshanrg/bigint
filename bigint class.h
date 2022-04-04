@@ -35,48 +35,46 @@
 #include <math.h>
 #include <limits>
 
-using namespace std;
-
 class bigint {
     private: 
-        string str; // only data memeber for strong Big Integer as String. [For signed int, str[0] = '-']
+        std::string str; // only data memeber for strong Big Integer as String. [For signed int, str[0] = '-']
         
 
         // Function Definitions for Internal Uses
 
-        static string trim(string);
-        static string add(string, string);
-        static string subtract(string, string);
-        static string multiply(string, string);
-        static string divide(string, string);
+        static std::string trim(std::string);
+        static std::string add(std::string, std::string);
+        static std::string subtract(std::string, std::string);
+        static std::string multiply(std::string, std::string);
+        static std::string divide(std::string, std::string);
 
-        static string mod(string, string);
-        static string shortDivide(string, unsigned long long int);
-        static string maximum(string, string);
-        static bool is_maximum(string, string);
-        static bool is_strictlyMaximum(string, string);
-        static string minimum(string, string);
-        static bool is_minimum(string, string);
-        static bool is_strictlyMinimum(string, string);
-        static bool is_bigint(string);
+        static std::string mod(std::string, std::string);
+        static std::string shortDivide(std::string, unsigned long long int);
+        static std::string maximum(std::string, std::string);
+        static bool is_maximum(std::string, std::string);
+        static bool is_strictlyMaximum(std::string, std::string);
+        static std::string minimum(std::string, std::string);
+        static bool is_minimum(std::string, std::string);
+        static bool is_strictlyMinimum(std::string, std::string);
+        static bool is_bigint(std::string);
 
         // Public Property
 
-        static string abs(string);
-        static string pow(string, string);
-        static string sqrt(string);
-        static string log2(string);
-        static string log10(string);
-        static string logwithbase(string, string);
-        static string antilog2(string);
-        static string antilog10(string);
-        static void swap(string&, string&);
-        static string reverse(string);
-        static string gcd(string, string);
-        static string lcm(string, string);
-        static string fact(string);
-        static bool isPalindrome(string);
-        static bool isPrime(string);        
+        static std::string abs(std::string);
+        static std::string pow(std::string, std::string);
+        static std::string sqrt(std::string);
+        static std::string log2(std::string);
+        static std::string log10(std::string);
+        static std::string logwithbase(std::string, std::string);
+        static std::string antilog2(std::string);
+        static std::string antilog10(std::string);
+        static void swap(std::string&, std::string&);
+        static std::string reverse(std::string);
+        static std::string gcd(std::string, std::string);
+        static std::string lcm(std::string, std::string);
+        static std::string fact(std::string);
+        static bool isPalindrome(std::string);
+        static bool isPrime(std::string);        
 
 
     public: 
@@ -84,32 +82,32 @@ class bigint {
         bigint() {
             str = '0';  //default value
         }
-        bigint(string s) {
+        bigint(std::string s) {
             if(!is_bigint(s))
-                throw runtime_error("Invalid Big Integer has been fed.");   // if the input string is not valid number.
+                throw std::runtime_error("Invalid Big Integer has been fed.");   // if the input string is not valid number.
             str = s;
         }
         bigint(long long int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(long int n) {
-            str = to_string(n);
+            str = std::to_string(n);
         }
         bigint(const bigint &n) {
             str = n.str;
         }
 
         // operator overloading for output stream {<<}
-        friend ostream &operator << (ostream& stream, const bigint &n) {
+        friend std::ostream &operator << (std::ostream& stream, const bigint &n) {
             stream << n.str;
             return stream;
         }
 
         // operator overloading for input stream {>>}
-        friend istream &operator >> (istream& stream, bigint &n) {
+        friend std::istream &operator >> (std::istream& stream, bigint &n) {
             stream >> n.str;
             return stream;
         }
@@ -124,32 +122,32 @@ class bigint {
         }        
         friend bigint operator + (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
         friend bigint operator + (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
         friend bigint operator + (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = add(n1.str, to_string(n2));
+            ans.str = add(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator + (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = add(n2.str, to_string(n1));
+            ans.str = add(n2.str, std::to_string(n1));
             return ans;
         }
 
@@ -173,32 +171,32 @@ class bigint {
 
         friend bigint operator - (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator - (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator - (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = subtract(n1.str, to_string(n2));
+            ans.str = subtract(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator - (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = subtract(to_string(n1), n2.str);
+            ans.str = subtract(std::to_string(n1), n2.str);
             return ans;
         }
 
@@ -219,32 +217,32 @@ class bigint {
         }
         friend bigint operator * (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator * (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator * (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = multiply(n1.str, to_string(n2));
+            ans.str = multiply(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator * (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = multiply(to_string(n1), n2.str);
+            ans.str = multiply(std::to_string(n1), n2.str);
             return ans;
         }
         // Extra shortcut feature
@@ -264,32 +262,32 @@ class bigint {
         }
         friend bigint operator / (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator / (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator / (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = divide(n1.str, to_string(n2));
+            ans.str = divide(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator / (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = divide(to_string(n1), n2.str);
+            ans.str = divide(std::to_string(n1), n2.str);
             return ans;
         }
 
@@ -310,32 +308,32 @@ class bigint {
         }
         friend bigint operator % (bigint const &n1, int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator % (bigint const &n1, long int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         friend bigint operator % (bigint const &n1, long long int n2) {
             bigint ans;
-            ans.str = mod(n1.str, to_string(n2));
+            ans.str = mod(n1.str, std::to_string(n2));
             return ans;
         }
         friend bigint operator % (long long int n1, bigint const &n2) {
             bigint ans;
-            ans.str = mod(to_string(n1), n2.str);
+            ans.str = mod(std::to_string(n1), n2.str);
             return ans;
         }
         
@@ -388,22 +386,22 @@ class bigint {
             return is_strictlyMaximum(str, n.str);
         }
         friend bool operator > (bigint const &n1, int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
         friend bool operator > (bigint const &n1, long int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (long int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
         friend bool operator > (bigint const &n1, long long int n2) {
-            return is_strictlyMaximum(n1.str, to_string(n2));
+            return is_strictlyMaximum(n1.str, std::to_string(n2));
         }
         friend bool operator > (long long int n1, bigint const &n2) {
-            return is_strictlyMaximum(to_string(n1), n2.str);
+            return is_strictlyMaximum(std::to_string(n1), n2.str);
         }
 
         /* Operator {<} Overloadings, for different kind of 
@@ -413,22 +411,22 @@ class bigint {
             return is_strictlyMinimum(str, n.str);
         }
         friend bool operator < (bigint const &n1, int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
         friend bool operator < (bigint const &n1, long int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (long int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
         friend bool operator < (bigint const &n1, long long int n2) {
-            return is_strictlyMinimum(n1.str, to_string(n2));
+            return is_strictlyMinimum(n1.str, std::to_string(n2));
         }
         friend bool operator < (long long int n1, bigint const &n2) {
-            return is_strictlyMinimum(to_string(n1), n2.str);
+            return is_strictlyMinimum(std::to_string(n1), n2.str);
         }
 
         /* Operator {>=} Overloadings, for different kind of 
@@ -438,22 +436,22 @@ class bigint {
             return is_maximum(str, n.str);
         }
         friend bool operator >= (bigint const &n1, int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
         friend bool operator >= (bigint const &n1, long int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (long int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
         friend bool operator >= (bigint const &n1, long long int n2) {
-            return is_maximum(n1.str, to_string(n2));
+            return is_maximum(n1.str, std::to_string(n2));
         }
         friend bool operator >= (long long int n1, bigint const &n2) {
-            return is_maximum(to_string(n1), n2.str);
+            return is_maximum(std::to_string(n1), n2.str);
         }
 
         /* Operator {<=} Overloadings, for different kind of 
@@ -463,22 +461,22 @@ class bigint {
             return is_minimum(str, n.str);
         }
         friend bool operator <= (bigint const &n1, int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
         friend bool operator <= (bigint const &n1, long int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (long int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
         friend bool operator <= (bigint const &n1, long long int n2) {
-            return is_minimum(n1.str, to_string(n2));
+            return is_minimum(n1.str, std::to_string(n2));
         }
         friend bool operator <= (long long int n1, bigint const &n2) {
-            return is_minimum(to_string(n1), n2.str);
+            return is_minimum(std::to_string(n1), n2.str);
         }
 
 
@@ -489,22 +487,22 @@ class bigint {
             return (*this).str == n.str;
         }
         friend bool operator == (bigint const &n1, int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
         friend bool operator == (bigint const &n1, long int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (long int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
         friend bool operator == (bigint const &n1, long long int n2) {
-            return n1.str == to_string(n2);
+            return n1.str == std::to_string(n2);
         }
         friend bool operator == (long long int n1, bigint const &n2) {
-            return to_string(n1) == n2.str;
+            return std::to_string(n1) == n2.str;
         }
 
 
@@ -515,22 +513,22 @@ class bigint {
             return (*this).str != n.str;
         }
         friend bool operator != (bigint const &n1, int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
         friend bool operator != (bigint const &n1, long int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (long int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
         friend bool operator != (bigint const &n1, long long int n2) {
-            return n1.str != to_string(n2);
+            return n1.str != std::to_string(n2);
         }
         friend bool operator != (long long int n1, bigint const &n2) {
-            return to_string(n1) != n2.str;
+            return std::to_string(n1) != n2.str;
         }
 
         //-----------------------------------------------------------
@@ -621,24 +619,24 @@ class bigint {
 
         // to biginteger functions
 
-        static bigint _to_bigint(string s) {
+        static bigint _to_bigint(std::string s) {
             bigint ans;
             ans.str = s;
             return ans;
         }
         static bigint _to_bigint(int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
         static bigint _to_bigint(long int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
         static bigint _to_bigint(long long int n) {
             bigint ans;
-            ans.str = to_string(n);
+            ans.str = std::to_string(n);
             return ans;
         }
 };
