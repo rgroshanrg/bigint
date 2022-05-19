@@ -33,7 +33,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <cmath>
+#include <math.h>
 #include <limits>
 
 // Macros for Programmer(User) use cases.
